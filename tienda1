@@ -1,0 +1,35 @@
+class Producto:
+    """Clase que representa un producto en el inventario de la tienda."""
+    
+    def _init_(self, nombre: str, precio: float, cantidad: int):
+        """Inicializa un producto con nombre, precio unitario y cantidad."""
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+    
+    def mostrar_info(self):
+        """Muestra la información del producto con el formato adecuado."""
+        return f"Producto: {self.nombre}, Precio: ${self.precio:.2f} COP, Cantidad: {self.cantidad} unidades"
+
+
+def main():
+    """Función principal para recopilar los datos de los productos y mostrarlos."""
+    productos = []
+    
+    for i in range(3):
+        print(f"Ingrese los datos del producto {i + 1}:")
+        nombre = input("Nombre: ")
+        precio = float(input("Precio unitario (COP): "))
+        cantidad = int(input("Cantidad en unidades: "))
+        
+        producto = Producto(nombre, precio, cantidad)
+        productos.append(producto)
+        print()
+    
+    print("\nInventario de la tienda:")
+    for producto in productos:
+        print(producto.mostrar_info())
+
+
+if _name_ == "_main_":
+    main()
