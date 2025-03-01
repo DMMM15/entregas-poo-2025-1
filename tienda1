@@ -1,34 +1,74 @@
 class Producto:
-    """Clase que representa un producto en el inventario de la tienda."""
+    """
+    Clase para modelar un producto en la tienda.
     
-    def _init_(self, nombre: str, precio: float, cantidad: int):
-        """Inicializa un producto con nombre, precio unitario y cantidad."""
+    Atributos:
+        nombre (str): Nombre del producto.
+        precio_unitario (float): Precio unitario del producto en COP (pesos colombianos).
+        cantidad (int): Cantidad de unidades disponibles del producto.
+    """
+    
+    def _init_(self, nombre, precio_unitario, cantidad):
+        """
+        Inicializa los atributos del producto.
+        
+        Args:
+            nombre (str): Nombre del producto.
+            precio_unitario (float): Precio unitario del producto en COP.
+            cantidad (int): Cantidad de unidades disponibles del producto.
+        """
         self.nombre = nombre
-        self.precio = precio
+        self.precio_unitario = precio_unitario
         self.cantidad = cantidad
     
-    def mostrar_info(self):
-        """Muestra la información del producto con el formato adecuado."""
-        return f"Producto: {self.nombre}, Precio: ${self.precio:.2f} COP, Cantidad: {self.cantidad} unidades"
+    def _str_(self):
+        """
+        Retorna una representación del producto en forma de cadena de texto.
+        """
+        return f"Producto: {self.nombre}\nPrecio Unitario: ${self.precio_unitario:,.2f} COP\nCantidad: {self.cantidad} unidades"
 
 
+def recopilar_datos_producto():
+    """
+    Función para recopilar los datos de un producto de la tienda.
+    
+    Returns:
+        Producto: Un objeto de la clase Producto con los datos ingresados.
+    """
+    nombre = input("Ingrese el nombre del producto: ")
+    precio_unitario = float(input("Ingrese el precio unitario del producto en COP: "))
+    cantidad = int(input("Ingrese la cantidad disponible del producto en unidades: "))
+    
+    return Producto(nombre, precio_unitario, cantidad)
+
+
+def mostrar_inventario(productos):
+    """
+    Función para mostrar el inventario de productos.
+    
+    Args:
+        productos (list): Lista de objetos Producto.
+    """
+    print("\nInventario de productos:")
+    for producto in productos:
+        print(producto)
+        print("-" * 30)
+
+
+# Función principal
 def main():
-    """Función principal para recopilar los datos de los productos y mostrarlos."""
     productos = []
     
-    for i in range(3):
-        print(f"Ingrese los datos del producto {i + 1}:")
-        nombre = input("Nombre: ")
-        precio = float(input("Precio unitario (COP): "))
-        cantidad = int(input("Cantidad en unidades: "))
-        
-        producto = Producto(nombre, precio, cantidad)
-        productos.append(producto)
-        print()
+    print("Bienvenido al sistema de inventario.\n")
     
-    print("\nInventario de la tienda:")
-    for producto in productos:
-        print(producto.mostrar_info())
+    # Recopilando los datos de tres productos
+    for i in range(1, 4):
+        print(f"\nIngrese los datos del producto {i}:")
+        producto = recopilar_datos_producto()
+        productos.append(producto)
+    
+    # Mostrando el inventario
+    mostrar_inventario(productos)
 
 
 if _name_ == "_main_":
