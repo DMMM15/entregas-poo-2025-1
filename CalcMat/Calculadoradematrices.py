@@ -1,4 +1,4 @@
-David Mateo Moyano Mahecha
+
 
 class Matriz:
     """Clase para representar y operar matrices 2x2."""
