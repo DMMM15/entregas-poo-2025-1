@@ -1,4 +1,4 @@
-David Mateo Moyano Mahecha
+
 
 class Visualizador:
     """Clase que permite visualizar datos de la mascota."""
