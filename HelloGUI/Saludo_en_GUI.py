@@ -1,4 +1,3 @@
-"DAVID MATEO MOYANO MAHECHA"
 
 import tkinter as tk
 from tkinter import messagebox
