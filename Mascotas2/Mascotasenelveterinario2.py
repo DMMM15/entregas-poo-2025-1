@@ -1,3 +1,4 @@
+from datetime import datetime 
 
 
 class Visualizador:
@@ -12,14 +13,14 @@ class Mascota:
     """Clase base que modela una mascota en la veterinaria."""
 
     def __init__(self, nombre, edad, raza):
-        """ los atributos principales de la mascota."""
+        """Inicializa los atributos principales de la mascota."""
         self.nombre = nombre
         self.edad = edad
         self.raza = raza
         self.fecha_ingreso = datetime.now().isoformat()
 
     def obtener_datos(self):
-        """Devuelve los datos principales de la mascota en lista."""
+        """Devuelve los datos principales de la mascota como lista."""
         return [
             self.__class__.__name__,
             self.nombre,
@@ -42,7 +43,13 @@ class Gato(Mascota, Visualizador):
 def ingresar_mascota():
     """Función principal para ingresar y mostrar las mascotas."""
     mascotas = []
-    cantidad = int(input("¿Cuántas mascotas va a ingresar? "))
+
+    while True:
+        try:
+            cantidad = int(input("¿Cuántas mascotas va a ingresar? "))
+            break
+        except ValueError:
+            print("Por favor, ingrese un número válido.")
 
     for i in range(1, cantidad + 1):
         while True:
@@ -57,10 +64,18 @@ def ingresar_mascota():
             print("Entrada inválida. Debe ser 'P' o 'G'. Intente nuevamente.")
 
         nombre = input(f"¿Cuál es el nombre del {clase.__name__}? ")
-        edad = int(input(f"¿Qué edad tiene '{nombre}'? "))
+
+        while True:
+            try:
+                edad = int(input(f"¿Qué edad tiene '{nombre}'? "))
+                break
+            except ValueError:
+                print("Edad inválida. Ingrese un número.")
+
         raza = input(f"¿De qué raza es '{nombre}'? ")
 
-        mascotas.append(clase(nombre, edad, raza))
+        mascota = clase(nombre, edad, raza)
+        mascotas.append(mascota)
 
     print("\nResumen:")
     print("|Clase |Nombre   |Edad   |Raza         |Fecha de ingreso          |")
@@ -70,3 +85,5 @@ def ingresar_mascota():
 
 if __name__ == "__main__":
     ingresar_mascota()
+
+
